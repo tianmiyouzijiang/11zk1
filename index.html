@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="fonts/iconfont.css">
+    <script src='js/jquery1.1.js'></script>
+</head>
+<body>
+    <div class="wrap">
+        <header class="header">
+            <span></span>
+            <span>公司</span>
+            <span><i class="icon iconfont icon-fangdajing"></i></span>
+        </header>
+        <div class="main">
+            <div class="tit">
+                <span>融资<i class="icon iconfont icon-chevron-thin-down"></i></span>
+                <span>规模<i class="icon iconfont icon-chevron-thin-down"></i></span>
+                <span>行业<i class="icon iconfont icon-chevron-thin-down"></i></span>
+            </div>
+        </div>
+        <footer class="footer">
+            <ul>
+                <li><i class="icon iconfont icon-tengxunweibo21"></i><span>首页</span></li>
+                <li><i class="icon iconfont icon-pingfen"></i><span>首页</span></li>
+                <li id='active'><i class="icon iconfont icon-baidu"></i><span>首页</span></li>
+                <li><i class="icon iconfont icon-QQ1"></i><span>首页</span></li>
+            </ul>
+        </footer>
+    </div>
+    <script>
+        //接收数据
+        $.ajax({
+            url:'http://localhost:8090/getdata',
+            dataType:'JSON',
+            success:function(data) {
+                for(var i=0;i<data.length;i++) {
+                    var str = `<dl><dt><img src=${data[i].src}></dt><dd><h4>${data[i].tit}</h4><p>${data[i].span}</p><p>${data[i].slide}</p></dd></dl>`
+                    $('.main').append(str)
+                }
+            }
+        })
+    </script>
+</body>
+</html>
